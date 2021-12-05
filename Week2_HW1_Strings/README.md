@@ -1,4 +1,3 @@
-# SE-Homework
 ## Week2_HW1_Strings
 ### Let's practice strings some more:
 1. Write a program to find if a user entered string is a palindrome or not (for example "racecar" is a palindrome)
