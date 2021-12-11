@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Value With Index</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <div class="d-grid col-md-4 col-6 mx-auto ">
+        <h2 class="text-center">The list of cities you want to visit</h2>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" id="input" placeholder="Enter the city...">
+            <button class="btn btn-outline-success" type="button" id="add-btn">Add</button>
+        </div>
+        <button id="submit-btn" class="btn btn-outline-primary" type="button">Display the list</button>
+        <hr>
+        <p id="result"></p>
+    </div>
+    <script>
+        // Traverse through an array (either number or string array) and display each value with their index position using Array.map method
+
+        const listOfCities = [];
+
+        // define an object 'form' to access HTML elements on the page
+        const form = {
+            btnAdd: document.getElementById('add-btn'),
+            btnSubmit: document.getElementById('submit-btn'),
+            input: document.getElementById('input'),
+            getValue: () => document.getElementById('input').value,
+            setValue: (str) => document.getElementById('input').value = str,
+            displayResult: (str) => document.getElementById('result').innerHTML = str
+        };
+        // define function to store the value into the list
+        const storeValue = (value) => {
+            if (value) {
+                listOfCities.push(value);
+                form.setValue('');
+            }
+            form.input.focus();
+        }
+        // store value into the list when press the key 'Enter'
+        form.input.onkeypress = event => {
+            if (event.keyCode === 13) {
+                storeValue(form.getValue());
+            }
+        }
+        // store value into the list by clicking 'Add' button
+        form.btnAdd.onclick = () => storeValue(form.getValue());
+        // display each value with their index position using Array.map method
+        form.btnSubmit.onclick = () => form.displayResult(listOfCities.map((v, i) => (i + ' : ' + v)).join('<br>'));
+
+    </script>
+
+</body>
+
+</html>
