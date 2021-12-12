@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body class="bg-light">
+    <div class="d-grid col-9 mx-auto ">
+        <h3>Temperature Converter</h3>
+        <div class="input-group mb-3">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="input-celsius" placeholder="Celsius">
+                <label for="input-celsius">Celsius</label>
+            </div>
+            <span class="input-group-text">=</span>
+            <div class="form-floating">
+                <input type="text" class="form-control" id="input-fahrenheit" placeholder="Fahrenheit">
+                <label for="input-fahrenheit">Fahrenheit</label>
+            </div>
+        </div>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        // define an object 'form' to access/manipulate HTML elements on the page
+        const form = {
+            celsius: document.getElementById('input-celsius'),
+            fahrenheit: document.getElementById('input-fahrenheit'),
+            displayResult: (str) => document.getElementById('result').innerHTML = str
+        }
+        // function takes a Celsius temperature as an argument and converts it to Fahrenheit
+        const celsiusToFahrenheit = num => num * 9 / 5 + 32;
+
+        // display temperature converted to Fahrenheit when entering Celsius
+        form.celsius.onkeyup = () => {
+            //convert Celsius input into number
+            const c = Number(form.celsius.value);
+            // convert temperature, rounding result to 3 decimals
+            const f = Number(celsiusToFahrenheit(c).toFixed(3));
+            form.fahrenheit.value = f;
+            form.displayResult(c + ' degrees Celsius is ' + f + ' degrees Fahrenheit');
+        }
+        // function takes a Fahrenheit temperature as an argument and converts it to Celsius
+        const fahrenheitToCelsius = num => (num - 32) * 5 / 9;
+        // display temperature converted to Celsius when entering Fahrenheit
+        form.fahrenheit.onkeyup = () => {
+            //convert Fahrenheit input into number
+            const f = Number(form.fahrenheit.value);
+            // convert temperature, rounding result to 3 decimals
+            const c = Number(fahrenheitToCelsius(f).toFixed(3));
+            form.celsius.value = c;
+            form.displayResult(f + ' degrees Fahrenheit is ' + c + ' degrees Celsius');
+        }
+    </script>
+
+</body>
+
+</html>
