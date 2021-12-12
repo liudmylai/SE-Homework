@@ -11,39 +11,21 @@
 </head>
 
 <body class="bg-light">
-    <div class="d-grid gap-2 col-6 mx-auto text-center">
-        <h2>Max Of Three</h2>
+    <div class="d-grid gap-2 col-md-4 col-6 mx-auto text-center">
+        <h3>Max Of Three</h3>
         <input type="text" class="form-control number" placeholder="Enter the first number">
         <input type="text" class="form-control number" placeholder="Enter the second number">
         <input type="text" class="form-control number" placeholder="Enter the third number">
         <button id="btn" class="btn btn-outline-secondary" type="button">Get the largest number</button>
-        <h3 id="result" class="display-1"></h3>
+        <h4 id="result" class="display-1"></h4>
     </div>
 
     <script>
         const btn = document.getElementById('btn');
-        const maxOfThree = collection => {
-            const mapArr = Array.from(collection).map(num => Number(num.value));
-            for (let i = 0; i < mapArr.length - 1; i++) {
-
-                // if current element is more then the next element,
-                // then swap elements each other using destructuring
-                // to move the largest element forward (bubble sort)
-                if (mapArr[i] > mapArr[i + 1]) {
-                    [mapArr[i], mapArr[i + 1]] = [mapArr[i + 1], mapArr[i]];
-                }
-            }
-            // return the last array's element
-            return mapArr.pop();
-        }
-
-        // add 'onclick' attribute to the <button> element
-        btn.onclick = () => {
-            // collect input elements
-            const numbers = document.getElementsByClassName('number');
-            // execute the 'maxOfThree' function and write result into the <h3> element
-            document.getElementById("result").innerHTML = maxOfThree(numbers)
-        }
+        // transform collection to an array and use Math.max() to return the largest number
+        const maxOfThree = collection => Math.max(...Array.from(collection).map(num => Number(num.value)));
+        // collect input elements, execute the 'maxOfThree' function, and display result
+        btn.onclick = () => document.getElementById("result").innerHTML = maxOfThree(document.getElementsByClassName('number'))
     </script>
 </body>
 
