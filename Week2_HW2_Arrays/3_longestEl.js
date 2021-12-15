@@ -14,6 +14,6 @@ const colors = ['red', 'blue', 'yellow', 'black', 'green'];
 // }
 
 // Optimize logic using 'reduce' function
-const getLongestElement = arr => arr.reduce((result, element) => (result.length < element.length) ? element : result, '');
+const getLongestElement = arr => arr.reduce((result, element) => (result.length < element.length) ? element : result);
 console.log(getLongestElement(colors));
 

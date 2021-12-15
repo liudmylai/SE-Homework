@@ -8,5 +8,5 @@ const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 // }
 
 // Optimize logic using 'reduce' function
-const addUp = arr => arr.reduce((sum, number) => sum + number, 0);
+const addUp = arr => arr.reduce((sum, number) => sum + number);
 console.log(addUp(numbers));
