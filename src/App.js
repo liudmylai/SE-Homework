@@ -9,6 +9,7 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Student Scores</h1>
       {studentData.students.map((student, index) => <Student student={student} key={index} />)}
     </div>
   );
