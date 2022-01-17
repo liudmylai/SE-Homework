@@ -1,16 +1,13 @@
-import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const baseURL = 'https://swapi.dev/api/';
 
-function GetAllStarships() {
-    const [data, setData] = useState();
-    useEffect(() =>
-        axios.get(baseURL + 'starships')
-            .then(response => setData(response.data))
-            .catch(error => console.error(error))
-        , []);
-    return data;
+function getAllStarships(url) {
+    return axios.get(url ? url : baseURL + 'starships')
+        .then(response => response.data)
+        .catch(error => console.error(error))
 }
 
-export default GetAllStarships;
+
+
+export { getAllStarships };
