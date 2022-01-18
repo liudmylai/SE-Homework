@@ -11,18 +11,24 @@ body {
 h1 {
     color: #fff;
 }
-
 h1, h3 {
     font-weight: normal;
-
 }
-
+button {
+    width: 100%;
+    font-family: 'Star Jedi', sans-serif;
+    padding: 10px; 
+}
 .container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     padding: 1% 15%;
+}
+.more {
+    background-color: #c7b206;
+    color: #272b30;
 }
 .card {
     display: flex;
@@ -34,6 +40,24 @@ h1, h3 {
     text-align: center;
     background-color: #272b30;
     color: #c7b206;
-    padding: 10px;
-    
+    padding: 20px;
+}
+.modal {
+    position: fixed;
+    width: 80%;
+    max-width: 600px;
+    background-color: #c7b206;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    box-shadow: 0 0 20px 10px #fff;
+}
+.modal div {
+    width: calc(50% - 5px);
+    text-align: left;
+}
+.close {
+    background-color: #272b30;
+    color: #c7b206;
 }

@@ -1,7 +1,7 @@
 function Starship(props) {
-    const {starship} = props;
+    const {starship, showStarshipInfo, id} = props;
     return(
-        <div className="card">
+        <div className="card" onClick={()=>showStarshipInfo(id)}>
             <h3>{starship.name}</h3>
         </div>
     );
