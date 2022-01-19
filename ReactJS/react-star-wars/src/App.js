@@ -1,56 +1,60 @@
 import './App.css';
 import * as API from './services/sw-api';
-import Starship from './components/Starship';
-import StarshipInfo from './components/StarshipInfo';
 
-import { useState, useEffect } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Cards from './components/Cards';
+
 
 function App() {
-  // state to store starships data
-  const [data, setData] = useState({
-    next: null,
-    results: []
-  });
-  // state to store the next page URL
-  const [nextURL, setNextURL] = useState();
-  // state to store additional info about selected starship
-  const [info, setInfo] = useState();
-  
-  // use Effect Hook to get starships info from the server
-  // and set this data to state 
-  useEffect(() =>
-    API.getAllStarships(nextURL)
-      // add new data to previous object into related properties
-      .then(resultData => setData(prevData => ({
-        ...prevData,
-        next: resultData.next,
-        results: [...prevData.results, ...resultData.results]
-      })))
-      // triggers useEffect when 'nextURL' changes
-    , [nextURL]);
+  const peopleInfo = object => [
+    { key: 'Name', value: object.name },
+    { key: 'Height', value: object.height },
+    { key: 'Mass', value: object.mass },
+    { key: 'Hair color', value: object.hair_color },
+    { key: 'Skin color', value: object.skin_color },
+    { key: 'Eye color', value: object.eye_color },
+    { key: 'Birth year', value: object.birth_year },
+    { key: 'Gender', value: object.gender }
+  ];
 
-  // set next page URL by clicking the 'Cet More...' button    
-  const handleClick = () => {
-    setNextURL(data.next);
-  }
-  // show the modal window with info
-  const showStarshipInfo = id => {
-    setInfo(data.results[id]);
-  }
-  // hide the modal window by setting 'null' to info state
-  const closeStarshipInfo = () => {
-    setInfo(null);
-  } 
+  const starshipInfo = object => [
+    { key: 'Model', value: object.model },
+    { key: 'Manufacturer', value: object.manufacturer },
+    { key: 'Cost in credits', value: object.cost_in_credits },
+    { key: 'Length', value: object.length },
+    { key: 'Max atmosphering speed', value: object.max_atmosphering_speed },
+    { key: 'Crew', value: object.crew },
+    { key: 'Passengers', value: object.passengers },
+    { key: 'Cargo capacity', value: object.cargo_capacity },
+    { key: 'Consumables', value: object.consumables },
+    { key: 'Hyperdrive rating', value: object.hyperdrive_rating },
+    { key: 'MGLT', value: object.MGLT },
+    { key: 'Starship class', value: object.starship_class }
+  ];
+
+  const planetInfo = object => [
+    { key: 'Name', value: object.name },
+    { key: 'Rotation period', value: object.rotation_period },
+    { key: 'Orbital period', value: object.orbital_period },
+    { key: 'Diameter', value: object.diameter },
+    { key: 'Climate', value: object.climate },
+    { key: 'Gravity', value: object.gravity },
+    { key: 'Terrain', value: object.terrain },
+    { key: 'Surface_water', value: object.surface_water },
+    { key: 'Population', value: object.population }
+  ]
 
   return (
-    <div className="App">
-      <h1>Star Wars Starships</h1>
-      <div className='container'>
-        {data && data.results.map((result, index) => <Starship starship={result} key={index} showStarshipInfo={showStarshipInfo} id={index} />)}
-        {data.next && <button className='more' onClick={handleClick}>Get More...</button>}
-        {info && <StarshipInfo info={info} closeStarshipInfo={closeStarshipInfo} />}
+    <BrowserRouter>
+      <div className="App">
+        <Routes>
+          <Route path='/' element={<Cards getStarWarData={API.getAllStarships} getInfoFromObject={starshipInfo} title='Starships' />} />
+          <Route path='/people' element={<Cards getStarWarData={API.getAllPeople} getInfoFromObject={peopleInfo} title='People' />} />
+          <Route path='/planets' element={<Cards getStarWarData={API.getAllPlanets} getInfoFromObject={planetInfo} title='Planets' />} />
+        </Routes>
+
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
