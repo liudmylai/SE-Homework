@@ -1,8 +1,9 @@
 import './App.css';
-import * as API from './services/sw-api';
-
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import * as API from './services/sw-api';
+import Nav from './components/Nav';
 import Cards from './components/Cards';
+import NoPage from './components/NoPage';
 
 
 function App() {
@@ -45,12 +46,19 @@ function App() {
   ]
 
   return (
+    // first wrap content with <BrowserRouter>
     <BrowserRouter>
       <div className="App">
+        <h1>Star Wars</h1>
+        <Nav />
+        {/* define <Routes> */}
         <Routes>
-          <Route path='/' element={<Cards getStarWarData={API.getAllStarships} getInfoFromObject={starshipInfo} title='Starships' />} />
-          <Route path='/people' element={<Cards getStarWarData={API.getAllPeople} getInfoFromObject={peopleInfo} title='People' />} />
-          <Route path='/planets' element={<Cards getStarWarData={API.getAllPlanets} getInfoFromObject={planetInfo} title='Planets' />} />
+          <Route path='/' element={<Cards getStarWarData={API.getAllStarships} getInfoFromObject={starshipInfo} />} />
+          <Route path='/starships' element={<Cards getStarWarData={API.getAllStarships} getInfoFromObject={starshipInfo} />} />
+          <Route path='/people' element={<Cards getStarWarData={API.getAllPeople} getInfoFromObject={peopleInfo} />} />
+          <Route path='/planets' element={<Cards getStarWarData={API.getAllPlanets} getInfoFromObject={planetInfo} />} />
+          {/* set the path to *  as a catch-all for any undefined URL */}
+          <Route path="*" element={<NoPage />} />
         </Routes>
 
       </div>

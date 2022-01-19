@@ -1,32 +1,38 @@
-
 import Card from './Card';
 import CardInfo from './CardInfo';
 import { useState, useEffect } from 'react';
 
 function Cards(props) {
-    const {getStarWarData, getInfoFromObject, title} = props;
-    // state to store starships data
+    const { getStarWarData, getInfoFromObject } = props;
+    // state to store data
     const [data, setData] = useState({
         next: null,
         results: []
     });
     // state to store the next page URL
     const [nextURL, setNextURL] = useState();
-    // state to store additional info about selected starship
+    // state to store additional info about selected card
     const [info, setInfo] = useState();
 
-    // use Effect Hook to get starships info from the server
-    // and set this data to state 
+    // use Effect Hook to get initial info from the server
+    // and set this data to state when 'getStarWarData' changes (i.e when we change route/page)
     useEffect(() =>
-    getStarWarData(nextURL)
+        getStarWarData()
+            .then(resultData => setData(resultData))
+        , [getStarWarData]);
+
+    // use Effect Hook to get next page info from the server
+    // and set this data to state when 'nextURL' changes
+    useEffect(() =>
+        // use AND operator to get data if next URL not null
+        nextURL && getStarWarData(nextURL)
             // add new data to previous object into related properties
             .then(resultData => setData(prevData => ({
                 ...prevData,
                 next: resultData.next,
                 results: [...prevData.results, ...resultData.results]
             })))
-        // triggers useEffect when 'nextURL' changes
-        , [nextURL, getStarWarData]);
+        , [nextURL]);
 
     // set next page URL by clicking the 'Cet More...' button    
     const handleClick = () => {
@@ -44,7 +50,6 @@ function Cards(props) {
     }
     return (
         <>
-            <h1>Star Wars {title}</h1>
             <div className="container">
                 {data && data.results.map((result, index) => <Card card={result} key={index} showInfo={showInfo} id={index} />)}
                 {data.next && <button className='more' onClick={handleClick}>Get More...</button>}

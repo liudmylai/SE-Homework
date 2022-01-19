@@ -8,7 +8,7 @@ body {
     background-color: #1c1e22;
     font-family: 'Star Jedi', sans-serif;
 }
-h1 {
+h1, h2 {
     color: #fff;
 }
 h1, h3 {
@@ -18,6 +18,23 @@ button {
     width: 100%;
     font-family: 'Star Jedi', sans-serif;
     padding: 10px; 
+    cursor: pointer;
+}
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 50px;
+    padding: 0;
+}
+nav a {
+    color: #c7b206;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+nav a:hover,
+nav a.active {
+    color: #fff;
 }
 .container {
     display: flex;
@@ -41,9 +58,11 @@ button {
     background-color: #272b30;
     color: #c7b206;
     padding: 20px;
+    cursor: pointer;
 }
 .modal {
     position: fixed;
+    top: 80px;
     width: 80%;
     max-width: 600px;
     background-color: #c7b206;
@@ -60,4 +79,16 @@ button {
 .close {
     background-color: #272b30;
     color: #c7b206;
+}
+.not-found {
+    color: #fff;
+    padding: 20vh 0;
+}
+.not-found h2 {
+    font-size: 7em;
+    margin: 0;
+}
+.not-found h3 {
+    font-size: 2rem;
+    margin: 0;
 }
