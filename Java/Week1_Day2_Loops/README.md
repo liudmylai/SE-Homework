@@ -17,10 +17,10 @@
 **Nested loops**
 1. Write a for loop to display the following outputs: 
 ```
-1              11111
-22             2222
-333            333
-4444           44
-55555          5
+1               11111
+22              2222
+333             333
+4444            44
+55555           5
 ```
 2. Write a for loop that iterates from 1 - 20. Should print “prime” for all prime numbers.
