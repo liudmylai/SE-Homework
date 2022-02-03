@@ -23,4 +23,4 @@
 4444            44
 55555           5
 ```
-2. Write a for loop that iterates from 1 - 20. Should print “prime” for all prime numbers.
+2. Write a for loop that iterates from 1 - 20. Should print "prime" for all prime numbers.
