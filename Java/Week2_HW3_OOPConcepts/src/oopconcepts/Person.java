@@ -15,5 +15,11 @@ public class Person {
 		this.age = age;
 		this.gender = gender;
 	}
+	public void display() {
+		System.out.println("Personal info:");
+		System.out.println("Name: " + this.fname + " " + this.lname);
+		System.out.println("Age: " + this.age);
+		System.out.println("Gender: " + this.gender);
+	}
 
 }

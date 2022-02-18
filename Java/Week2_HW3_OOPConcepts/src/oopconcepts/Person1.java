@@ -1,5 +1,6 @@
 package oopconcepts;
 
+//4. Create another class as Person1 and declare private properties in it. Also create setter and getter methods in this class as public methods.
 public class Person1 {
 	
 	private String fname;
@@ -38,7 +39,6 @@ public class Person1 {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
 	
 
 }
